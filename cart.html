@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Your shopping cart of items">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylesheets/home.css">
+        <link rel="stylesheet" href="stylesheets/cart.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <title>Shopping Cart</title>
+    </head>
+
+    <body>
+        <header>
+
+            <!-- <img id="logo" src="images/Omniology Logo - No text.jpg" alt="Site Logo"> -->
+            <span>
+                <a href="home.html"> THE OMNIOLOGY COLLECTION </a>
+            </span>
+
+            <menu>
+                <a class="weekBtn" href="week1.html">Week 1</a>
+                <a class="weekBtn" href="week2.html">Week 2</a>
+                <a class="weekBtn" href="week3.html">Week 3</a>
+                <a class="weekBtn" href="week4.html">Week 4</a>
+                <a href="cart.html"><img src="images/shopping-cart-24.png"></a>
+            </menu>
+
+        </header>
+
+        <main>
+            <template class="itemTemplate">
+                <div class="item">
+                    <img src="images/geodude.jpg">
+                    <aside>
+                        <span>This is maybe an item name we can put here</span>
+                        <button>Remove from cart</button>
+                    </aside>
+                </div>
+            </template>
+            <template class="checkoutBtnTemp">
+                <button class="checkoutBtn">Proceed to Checkout</button>
+            </template>
+        </main>
+
+        <footer id="copyright" class="flexGrow1">
+
+            <span>Email: <address>theomniologycollection@gmail.com</address></span>
+
+            <span>Copyright &copy; 2021 All Rights Reserved <br>Omniology Site</span>
+
+            <p>
+                <span>Our other stores:</span><br>
+                <a href="amazon.com">Amazon</a><br>
+                <a href="ebay.com">Ebay</a><br>
+                <a href="etsy.com">Etsy</a>
+            </p>
+
+        </footer>
+    </body>
+
+    <script src="cart.js"></script>
+</html>
