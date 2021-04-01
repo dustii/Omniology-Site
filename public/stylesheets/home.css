@@ -1,0 +1,293 @@
+body {
+    margin: 0;
+    /* background-image: url(images\Omniology\ Logo[504].jpg); */
+    color: white;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center;
+    font-family: 'Poiret One', 'Courier New', Courier, monospace;
+    /* font-family: Helvetica; */
+    /* min-width: 375px; */
+}
+
+header {
+    color: #F4C314;
+    background-color: #000000;
+    padding: 1%;
+    text-align: center;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+header span {
+    font-size: 3em;
+    font-family: 'Poiret One', cursive, 'Courier New', Courier, monospace;
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+header span a {
+    text-decoration: none;
+    color: #F4C314;
+}
+
+header menu {
+    padding-left: 0;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+header menu a {
+    padding: 10px;
+    font-size: 1.5em;
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.weekBtn:hover {
+    color: black;
+    background-color: white;
+    font-weight: bold;
+}
+
+/*
+header img {
+    height: 200px;
+}
+*/
+
+body {
+    background-color: #000;
+    min-width: 320px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #1A1A1A;
+    color: white;
+    min-height: 70vh;
+}
+
+main a img {
+    width: 200px;
+}
+
+#logo {
+    width: 60px;
+}
+
+.centralPiece {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #fff;
+    padding-bottom: 20px;
+    min-width: 300px;
+    text-align: center;
+}
+
+.featuredSection {
+    font-size: 1.5em;
+    flex-grow: 2;
+    /* flex-shrink: 2; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centralPiece img {
+    width: 50px;
+}
+
+.centralPiece a {
+    text-decoration: none;
+}
+
+#featImg {
+    width: 100%;
+    max-width: 750px;
+    transition: opacity 1s;
+}
+
+#about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    font-weight: 700;
+    font-size: 1.2em;
+    min-width: 300px;
+}
+
+#about::before {
+    content: "";
+    background-image: url("../images/Omniology\ Logo\ -\ No\ text.jpg");
+    background-repeat: round;
+    background-size: cover;
+    position: absolute;
+    opacity: .2;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+#copyright {
+    flex-grow: 1;
+    color: white;
+    height: 100px;
+    max-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+footer a {
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#center {
+    min-height: 65vh;
+    margin: auto;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropbtn {
+    font-size: 24px; 
+    line-height: 2;
+    color: rgb(232, 230, 227);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.flash {
+    text-align: center;
+}
+
+.accountForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.accountForm button {
+    width: 50%;
+    padding: 5px;
+    margin: 10px auto;
+    border-collapse: collapse;
+    border: none;
+}
+
+.accountForm input {
+    padding: 5px;
+    margin: 5px;
+}
+
+.accountForm label {
+    margin: 5px;
+}
+
+.accountTitle {
+    text-align: center;
+}
+
+#uploadForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#uploadForm input {
+    margin-bottom: 10px;
+}
+
+#uploadForm button {
+    width: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #f4c314;
+}
+
+#uploadForm label {
+    margin-top: 10px;
+}
+
+#flash {
+    text-align: center;
+    font-size: 2em;
+    background-color: #f4c314;
+    color: black;
+    font-weight: bold;
+    width: 50%;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+}
+
+#itemTable {
+    border: 1px solid white;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#itemTable th,td {
+    border: 1px solid white;
+    padding: 15px;
+    text-align: center;
+}
+
+#itemDescription {
+    min-width: 300px;
+}
+
+#itemId {
+    min-width: 100px;
+}
+
+.photoThumbnail {
+    max-width: 300px;
+}
+
+#admin {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#admin button {
+    height: 50px;
+    margin-top: 100px;
+    margin-left: 50px;
+}

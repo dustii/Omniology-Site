@@ -1,0 +1,15 @@
+main {
+    justify-content: center;
+}
+
+main img:hover, main button:hover {
+    cursor: pointer;
+}
+
+h1 {
+    color: white;
+    background-color: #1A1A1A;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}

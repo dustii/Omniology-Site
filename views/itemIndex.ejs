@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate'); %>
+
+<table id="itemTable">
+    <tbody>
+    <tr>
+        <th id="itemId">InventoryId</th>
+        <th>Title</th>
+        <th id="itemDescription">Description</th>
+        <th>PhotoThumbnails</th>
+        <th>Weight</th>
+        <th>Measurements</th>
+        <th>AdditionalTests</th>
+        <th>PurchasedFrom</th>
+        <th>PurchasePrice</th>
+        <th>ListPrice</th>
+        <th>SoldPrice</th>
+        <th>ShippingDate</th>
+    </tr>
+    <% for(let item of items) { %>
+        <tr>
+            <td><%= item.InventoryId %></td>
+            <td><%= item.Title %></td>
+            <td><%= item.Description %></td>
+            <td>
+            <% for(let photo of item.PhotoThumbnails) { %>
+                <img class="photoThumbnail" src=<%= photo %>>
+            <% } %>
+            </td>
+            <td><%= item.Weight %></td>
+            <td><%= item.Measurements %></td>
+            <td><%= item.AdditionalTests %></td>
+            <td><%= item.PurchasedFrom %></td>
+            <td>$<%= item.PurchasePrice %></td>
+            <td>$<%= item.ListPrice %></td>
+            <td>$<%= item.SoldPrice %></td>
+            <td><%= item.ShippingDate %></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>

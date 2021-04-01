@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate'); %>
+<main>
+    <form method="POST" action="upload" id="uploadForm" enctype="multipart/form-data">
+        <h1>Upload an Item</h1>
+        <label>InventoryId<br><input type="text" name="InventoryId" autofocus></label>
+        <label>Title<br><input type="text" name="Title"></label>
+        <label>Description<br><textarea name="Description" rows="5" cols="33"></textarea></label>
+        <label>PhotoThumbnails<br><input type="file" name="PhotoThumbnails" multiple></label>
+        <label>Weight<br><input type="text" name="Weight"></label>
+        <label>Measurements<br><input type="text" name="Measurements"></label>
+        <label>AdditionalTests<br><input type="text" name="AdditionalTests"></label>
+        <label>PurchasedFrom<br><input type="text" name="PurchasedFrom"></label>
+        <label>PurchasePrice<br><input type="number" name="PurchasePrice" step=".01"></label>
+        <label>ListPrice<br><input type="number" name="ListPrice" step=".01"></label>
+        <label>SoldPrice<br><input type="number" name="SoldPrice" step=".01"></label>
+        <label>ShippingDate<br><input type="date" name="ShippingDate"></label>
+        <button>Submit</button>
+    </form>
+</main>

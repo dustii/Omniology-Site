@@ -1,0 +1,7 @@
+<%- layout('layouts/boilerplate') %>
+<main>
+    <h1 class="flash"><%= err.message %></h1>
+    <% if(process.env.NODE_ENV !== "production") { %>
+    <p><%= err.stack %></p>
+    <% } %>
+</main>

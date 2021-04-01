@@ -1,0 +1,25 @@
+<header>
+
+    <span>
+        <a href="/"> THE OMNIOLOGY COLLECTION </a>
+    </span>
+
+    <menu>
+        <a class="weekBtn" href="week1.html">Week 1</a>
+        <a class="weekBtn" href="week2.html">Week 2</a>
+        <a class="weekBtn" href="week3.html">Week 3</a>
+        <a class="weekBtn" href="week4.html">Week 4</a>
+        <a href="cart"><img src="/images/shopping-cart-24.png"></a>
+        <div class="dropdown">
+            <span class="dropbtn">Account</span>
+            <div class="dropdown-content">
+                <% if (!currentUser) { %>
+                <a href="register">Register</a>
+                <a href="login">Login</a>
+                <% } else { %>
+                <a href="logout">Logout</a>
+                <% } %>
+            </div>
+        </div>
+    </menu>
+</header>
