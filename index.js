@@ -64,14 +64,6 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(flash());
 
-app.use((req, res, next) => {
-    res.locals.currentUser = req.user;
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    res.locals.cart = req.session.cart;
-    next();
-});
-
 app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(express.static(path.join(__dirname, 'public'))); //provides static directory to respond with assets
@@ -79,6 +71,14 @@ app.use(express.urlencoded({ extended: true })); //allows parsing of POST body
 app.use(express.json());
 
 app.engine('ejs', ejsMate);
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    res.locals.cart = req.session.cart;
+    next();
+});
 
 app.use('/', generalRoutes);
 app.use('/admin', adminRoutes);

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-// const dbUrl = 'mongodb://localhost:27017/omniology';
-const dbUrl = 'mongodb+srv://Dustin:Ud^rX^!s48eE@omniology.giuza.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/omniology';
 
 // mongoose.connect('mongodb://localhost:27017/omniology', {
 mongoose.connect(dbUrl, {
