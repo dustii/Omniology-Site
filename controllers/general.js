@@ -38,8 +38,10 @@ module.exports.renderHome = async(req, res) => {
 
 module.exports.renderCart = async(req, res) => {
     let items = [];
-    for (let id of req.session.cart) {
-        items.push(await Item.findById(id));
+    if (req.session.cart) {
+        for (let id of req.session.cart) {
+            items.push(await Item.findById(id));
+        }
     }
     res.render('cart', { items, title: "Cart" });
 }
