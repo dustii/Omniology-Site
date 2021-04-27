@@ -51,6 +51,11 @@ header menu a {
     font-weight: bolder;
 }
 
+#logo {
+    height: 60px;
+    vertical-align: bottom;
+}
+
 #cartIcon {
     padding-left: 0;
 }
@@ -82,10 +87,6 @@ main {
     background-color: #1A1A1A;
     color: white;
     min-height: 70vh;
-}
-
-#logo {
-    width: 60px;
 }
 
 .centralPiece {
