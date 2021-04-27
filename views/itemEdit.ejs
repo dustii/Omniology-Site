@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate'); %>
+
+<main>
+    <form method="POST" action="/admin/item/edit/<%= item._id %>" id="uploadForm" enctype="multipart/form-data">
+        <h1>Edit Item</h1>
+        <label>InventoryId<br><input type="text" name="InventoryId" value="<%= item.InventoryId %>" autofocus></label>
+        <label>Title<br><input type="text" name="Title" value="<%= item.Title %>"></label>
+        <label>Description<br><textarea name="Description" rows="5" cols="33"><%= item.Description %></textarea></label>
+        <label>Add or Remove Photos<br><input type="file" name="PhotoThumbnails" multiple></label>
+        <% item.PhotosSrc.forEach((photo, index) => { %>
+            <div>
+                <img class="editPhotos" src="<%= photo %>">
+                <label>Remove<input type="checkbox" name="removePhoto" value="<%= item.PhotoThumbnails[index] %>"></label>
+            </div>
+        <% }); %>
+        <label>Weight<br><input type="text" name="Weight" value="<%= item.Weight %>"></label>
+        <label>Measurements<br><input type="text" name="Measurements" value="<%= item.Measurements %>"></label>
+        <label>AdditionalTests<br><input type="text" name="AdditionalTests" value="<%= item.AdditionalTests %>"></label>
+        <label>PurchasedFrom<br><input type="text" name="PurchasedFrom" value="<%= item.PurchasedFrom %>"></label>
+        <label>PurchasePrice<br><input type="number" name="PurchasePrice" step=".01" value="<%= item.PurchasePrice %>"></label>
+        <label>ListPrice<br><input type="number" name="ListPrice" step=".01" value="<%= item.ListPrice %>"></label>
+        <label>SoldPrice<br><input type="number" name="SoldPrice" step=".01" value="<%= item.SoldPrice %>"></label>
+        <label>ShippingDate<br><input type="date" name="ShippingDate" value="<%= item.YMDdate %>"></label>
+        <div>
+            <label for="week"><br>Week</label>
+            <select name="week" id="week">
+                <option value="none" <%= item.Week ? "" : "selected" %>>None</option>
+                <option value="1" <%= item.Week && item.Week.number == "1" ? "selected" : "" %>>1</option>
+                <option value="2" <%= item.Week && item.Week.number == "2" ? "selected" : "" %>>2</option>
+                <option value="3" <%= item.Week && item.Week.number == "3" ? "selected" : "" %>>3</option>
+                <option value="4" <%= item.Week && item.Week.number == "4" ? "selected" : "" %>>4</option>
+            </select>
+
+            <label for="month">Month</label>
+            <select name="month" id="month" <%= item.Week ? "" : "disabled" %>>
+                <option value="01" <%= item.Week && item.Week.month == 01 ? "selected" : "" %>>January</option>
+                <option value="02" <%= item.Week && item.Week.month == 02 ? "selected" : "" %>>February</option>
+                <option value="03" <%= item.Week && item.Week.month == 03 ? "selected" : "" %>>March</option>
+                <option value="04" <%= item.Week && item.Week.month == 04 ? "selected" : "" %>>April</option>
+                <option value="05" <%= item.Week && item.Week.month == 05 ? "selected" : "" %>>May</option>
+                <option value="06" <%= item.Week && item.Week.month == 06 ? "selected" : "" %>>June</option>
+                <option value="07" <%= item.Week && item.Week.month == 07 ? "selected" : "" %>>July</option>
+                <option value="08" <%= item.Week && item.Week.month == 08 ? "selected" : "" %>>August</option>
+                <option value="09" <%= item.Week && item.Week.month == 09 ? "selected" : "" %>>September</option>
+                <option value="10" <%= item.Week && item.Week.month == 10 ? "selected" : "" %>>October</option>
+                <option value="11" <%= item.Week && item.Week.month == 11 ? "selected" : "" %>>November</option>
+                <option value="12" <%= item.Week && item.Week.month == 12 ? "selected" : "" %>>December</option>
+            </select>
+            <label>Year<input type="text" name="year" id="year" value="<%= item.Week ? item.Week.year : "" %>" <%= item.Week ? "" : "disabled" %>></label>
+        </div>
+        <button>Submit</button>
+    </form>
+</main>
+
+<script src="/scripts/uploadItem.js"></script>

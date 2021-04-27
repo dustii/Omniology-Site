@@ -1,59 +1,39 @@
-let main = document.querySelector('main');
-let itemTemplate = document.querySelector('.itemTemplate');
+const rmvBtns = document.querySelector(".cartText button");
 
-for (let i = 0; i < 5; i++) {
-    let item = document.createElement('div');
-    item.className = "item";
-    main.appendChild(item);
-
-    let img = document.createElement('img');
-    img.src = "images/geodude.jpg";
-    item.appendChild(img);
-
-    let aside = document.createElement('aside');
-    item.appendChild(aside);
-
-    let span = document.createElement('span');
-    span.innerHTML = "This is maybe an item name we can put here.";
-    aside.appendChild(span);
-
-    let button = document.createElement('button');
-    button.innerHTML = "Remove from cart";
-    button.addEventListener('click', event => {
-        item.remove();
-
-        if (document.querySelectorAll('.item').length == 0) {
-            emptyMsgFunc();
-            document.querySelector(".checkoutBtn").remove();
-        }
-
-
-    });
-    aside.appendChild(button);
-
+rmvBtns.onclick = function() {
+    const index = this.id[this.id.length - 1];
+    const itemId = document.querySelector(`#itemId${index}`).innerHTML;
+    
+    axios({
+        method: 'post',
+        url: '/removeFromCart',
+        withCredentials: true,
+        data: { id: itemId }
+    })
+    .then(res => { location.reload() })
+    .catch(err => console.log(err));
 }
 
-let checkoutBtnTemp = document.querySelector('.checkoutBtnTemp');
+const stripe = Stripe("pk_test_51IS46OLUXB5NUgfg3xjTpaTSAbue4ifhgFRpYIEVB2BAywZqiIeC54bfObEuKcMySxSvU0PcjovZWnQDRX6gs4yC006qGrDelF");
+const checkoutButton = document.querySelector("#goToCheckout");
 
-if (document.querySelectorAll('.item').length > 0) {
-    let checkoutBtn = document.createElement('button');
-    checkoutBtn.innerHTML = "Proceed to Checkout";
-    checkoutBtn.className = "checkoutBtn";
+checkoutButton.onclick = function() {
+    const itemIdEls = document.querySelectorAll(".itemId");
+    let itemIds = [];
+    for (let itemId of itemIdEls) {
+        itemIds.push(itemId.innerHTML);
+    }
 
-    main.appendChild(checkoutBtn);
-
-    checkoutBtn.addEventListener("click", () => {
-        window.open("checkout", "_top");
-    });
-}
-else
-    emptyMsgFunc();
-
-
-function emptyMsgFunc() {
-    let emptyMsg = document.createElement('p');
-    emptyMsg.className = 'emptyMsg';
-    emptyMsg.innerHTML = "There's nothing here!";
-
-    main.appendChild(emptyMsg);
+    axios({
+        method: 'post',
+        url: '/create-checkout-session',
+        withCredentials: true,
+        data: { itemIds }
+    })
+    .then(res => res.json())
+    .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+    .then((result) => {
+        if (result.error) alert(result.error.message);
+    })
+    .catch(err => console.log("Error:", err));
 }

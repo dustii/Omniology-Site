@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const passport = require('passport');
 
 module.exports.renderRegForm = (req, res) => {
     res.render('users/register')
@@ -25,9 +25,19 @@ module.exports.renderLoginForm = (req, res) => {
     res.render('users/login');
 }
 
-module.exports.login = (req, res) => {
-    req.flash('success', "Welcome back!");
-    res.redirect('/');
+module.exports.login = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) return next(err);
+        if (!user) {
+            req.flash('error', "Invalid username/password combination");
+            return res.redirect('/login');
+        }
+        req.logIn(user, (err) => {
+            if (err) return next(err);
+            req.flash('success', "Welcome back!");
+            return res.redirect('/');
+        });
+    }) (req, res, next);
 }
 
 module.exports.logout = (req, res) => {

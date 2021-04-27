@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="/stylesheets/home.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap">
-    <title>The Omniology Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+    <% if (typeof title !== 'undefined') { %>
+    <title><%= title %></title>
+    <% } else { %>
+    <title>Omniology</title>
+    <% } %>
 </head>
 
 <body>
@@ -24,4 +29,5 @@
 
 </body>
 
+<script type="module" src="/scripts/countdown.js"></script>
 </html>

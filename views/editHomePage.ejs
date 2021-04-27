@@ -1,0 +1,12 @@
+<% layout('layouts/boilerplate'); %>
+
+<main>
+    <form action="homepage" method="POST" id="editHomepageForm">
+        <h2>Themes</h2>
+        <label>Current Month<br><input type="text" id="thisMonth" name="thisMonth" value="<%= homepage.thisMonth %>"></label>
+        <label><br><br>Next Month<br><input type="text" id="nextMonth" name="nextMonth" value="<%= homepage.nextMonth %>"></label>
+        <label><br><br>Next Next Month<br><input type="text" id="nextNextMonth" name="nextNextMonth" value="<%= homepage.nextNextMonth %>"></label>
+        <br><br>
+        <button>Submit</button>
+    </form>
+</main>

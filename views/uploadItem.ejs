@@ -14,6 +14,35 @@
         <label>ListPrice<br><input type="number" name="ListPrice" step=".01"></label>
         <label>SoldPrice<br><input type="number" name="SoldPrice" step=".01"></label>
         <label>ShippingDate<br><input type="date" name="ShippingDate"></label>
+        <div>
+            <label for="week"><br>Week</label>
+            <select name="week" id="week">
+                <option value="none">None</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+
+            <label for="month">Month</label>
+            <select name="month" id="month" disabled>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <label>Year<input type="text" name="year" id="year" disabled></label>
+        </div>
         <button>Submit</button>
     </form>
 </main>
+
+<script src="/scripts/uploadItem.js"></script>

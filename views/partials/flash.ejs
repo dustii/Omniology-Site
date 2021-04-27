@@ -1,6 +1,8 @@
 <% if((success && success.length) || (error && error.length)) { %>
-<div id="flash" role="alert">
+<div id="flashSuccess" role="alert">
     <%= success %>
+</div>
+<div id="flashError">
     <%= error %>
 </div>
 <% } %>

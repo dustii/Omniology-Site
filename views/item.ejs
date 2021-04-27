@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate'); %>
+
+<img id="zoomPhoto">
+<main id="itemShowMain">
+    <div id="itemShowImgs">
+        <% item.PhotosSrc.forEach((photo, index) => { %>
+            <img class="itemShowPhoto photoThumbnail photoThumbnail0" src="<%= photo %>">
+        <% }); %>
+    </div>
+    <div id="prevNext">
+        <a class="prev" id="prev0">&#10094</a>
+        <a class="next" id="next0">&#10095</a>
+    </div>
+    <div id="itemShowText">
+        <br>
+        <h1><%= item.Title %></h1>
+        <span>$<%= item.ListPrice %></span>
+        <p><%= item.Description %></p>
+    </div>
+    <button id="addToCart">Add to Cart</button>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/scripts/itemIndex.js"></script>
+<script src="/scripts/item.js"></script>

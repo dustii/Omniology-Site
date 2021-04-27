@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate'); %>
+
+<main id="weekMain">
+    <% for (let item of items) { %>
+        <div class="weekItems">
+            <a href="/item/<%= item._id %>"><img src="<%= item.PhotosSrc[0] %>"></a>
+            <a href="/item/<%= item._id %>"><p><%= item.Title %></p></a>
+        </div>
+    <% } %>
+</main>
+
+<div id="weekNum" data-weeknum="<%= num %>"></div>
+
+<script> let weekNum = document.querySelector("#weekNum").dataset.weeknum; </script>
+<script type="module" src="/scripts/week.js"></script>
