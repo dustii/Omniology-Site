@@ -1,6 +1,7 @@
 const Item = require('../models/item');
 const Week = require('../models/week');
 const Homepage = require('../models/homepage');
+const uniqid = require('uniqid');
 
 
 module.exports.renderAdmin = (req, res) => {
@@ -15,11 +16,13 @@ module.exports.renderUpload = (req, res) => {
 
 module.exports.uploadItem = async(req, res) => {
     const itemBody = {
-        InventoryId: req.body.InventoryId,
+        InventoryId: req.body.InventoryId || uniqid.time(),
         Title: req.body.Title,
         Description: req.body.Description,
         Weight: req.body.Weight,
-        Measurements: req.body.Measurements,
+        Length: req.body.Length,
+        Width: req.body.Width,
+        Height: req.body.Height,
         AdditionalTests: req.body.AdditonalTests,
         PurchasedFrom: req.body.PurchasedFrom,
         PurchasePrice: req.body.PurchasePrice,
@@ -76,7 +79,9 @@ module.exports.editItem = async(req, res) => {
     item.Title = req.body.Title;
     item.Description = req.body.Description;
     item.Weight = req.body.Weight;
-    item.Measurements = req.body.Measurements;
+    item.Length = req.body.Length;
+    item.Width = req.body.Width;
+    item.Height = req.body.Height;
     item.AdditionalTests = req.body.AdditionalTests;
     item.PurchasedFrom = req.body.PurchasedFrom;
     item.PurchasePrice = req.body.PurchasePrice;
@@ -107,15 +112,15 @@ module.exports.editItem = async(req, res) => {
     }
 
     if (req.body.week !== "none") {
-        let week = await Week.find({ number: req.body.week, month: req.body.month, year: req.body.year });
-        if (week.length === 0) {
+        let week = await Week.findOne({ number: req.body.week, month: req.body.month, year: req.body.year });
+        if (!week) {
             week = new Week({ number: req.body.week, month: req.body.month, year: req.body.year });
             week.items = [item];
             await week.save();
         }
         else {
-            week[0].items.push(item);
-            await week[0].save();
+            week.items.push(item);
+            await week.save();
         }
 
         item.Week = week;
@@ -142,4 +147,6 @@ module.exports.editHomepage = async(req, res) => {
     homepage.nextMonth = req.body.nextMonth;
     homepage.nextNextMonth = req.body.nextNextMonth;
     homepage.save();
+    req.flash('success', "Edited Themes");
+    res.redirect('/admin');
 }

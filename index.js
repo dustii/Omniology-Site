@@ -14,6 +14,7 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongo')(session);
 
 const ExpressError = require('./utils/ExpressError');
+const { getMonths } = require('./utils/getMonths');
 const db = require('./mongoose/mongoosedb');
 const User = require('./models/user');
 const Homepage = require('./models/homepage');
@@ -72,11 +73,16 @@ app.use(express.json());
 
 app.engine('ejs', ejsMate);
 
-app.use((req, res, next) => {
+app.use(async(req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     res.locals.cart = req.session.cart;
+
+    res.locals.homepage = await Homepage.findOne({});
+    res.locals.thisMonth = getMonths()[0];
+    res.locals.nextMonth = getMonths()[1];
+    res.locals.nextNextMonth = getMonths()[2];
     next();
 });
 
@@ -100,6 +106,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
+
 
 const job = schedule.scheduleJob('* * * 1 *', async() => {
     const homepage = await Homepage.findOne({});

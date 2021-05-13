@@ -1,0 +1,39 @@
+<aside id="sidebar">
+    <img id="logo" src="/images/Omniology Logo - No text.jpg">
+        <menu>
+            <div class="dropdown">
+                <span class="dropbtn">Account</span>
+                <div class="dropdown-content">
+                    <% if (!currentUser) { %>
+                    <a href="/register">Register</a>
+                    <a href="/login">Login</a>
+                    <% } else { %>
+                    <a href="/logout">Logout</a>
+                    <% } %>
+                </div>
+            </div>
+        <div id="cartLink">
+            <div id="cartDiv">
+                <a id="cartIcon" href="/cart"><img src="/images/shopping-cart-24.png"></a>
+                <% if (typeof cart !== 'undefined' && cart.length > 0) { %>
+                    <span id="cartNum"><%= cart.length %></span>
+                <% } %>
+            </div>
+            <a href="/cart">Cart</a>
+        </div>
+            <a href="/about">About Us</a>
+        </menu>
+
+    <div id="outsideLinks">
+        <h2>Check out our other stores</h2>
+            <a href="ebay.com">Ebay</a>
+            <a href="etsy.com">Etsy</a>
+            <a href="other.com">Other</a>
+        <h2>And our Youtube Channel</h2>
+        <a href="youtube.com">Our Youtube Channel</a>
+    </div>
+</aside>
+
+<div id="tglArrow">
+    <span>&rtrif;</span>
+</div>

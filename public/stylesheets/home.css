@@ -1,7 +1,10 @@
 body {
+    display: flex;
     margin: 0;
     /* background-image: url(images\Omniology\ Logo[504].jpg); */
     color: white;
+    background-color: #1A1A1A;
+    min-width: 320px;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: contain;
@@ -13,14 +16,13 @@ body {
 
 header {
     color: #F4C314;
-    background-color: #000000;
-    padding: 1%;
+    background-color: #1A1A1A;
     text-align: center;
     font-size: 1em;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    justify-content: start;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 header span {
@@ -35,15 +37,16 @@ header span a {
     color: #F4C314;
 }
 
-header menu {
+menu {
     padding-left: 0;
     display: flex;
-    flex-grow: 1;
+    flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    margin-right: 5px;
 }
 
-header menu a {
+menu a {
     padding: 10px;
     font-size: 1.5em;
     color: white;
@@ -51,42 +54,46 @@ header menu a {
     font-weight: bolder;
 }
 
-#logo {
-    height: 60px;
-    vertical-align: bottom;
+#topHeader {
+    display: flex;
+    justify-content: space-between;
 }
 
 #cartIcon {
     padding-left: 0;
+    padding-right: 0;
 }
 
 .weekBtn {
-    font-family: 'Fira Mono', monospace;
+    /* font-family: 'Fira Mono', monospace; */
+    text-align: center;
+    text-decoration: none;
+    /* font-size: 1.2em; */
+    color: #F4C314;
 }
 
 .weekBtn:hover {
-    color: black;
-    background-color: white;
-    font-weight: bold;
+    /* color: black; */
+    /* background-color: white; */
+    /* font-weight: bold; */
 }
 
-/*
-header img {
-    height: 200px;
-}
-*/
-
-body {
-    background-color: #000;
-    min-width: 320px;
+#weekBtns {
+    display: none;
+    position: relative;
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
-    background-color: #1A1A1A;
-    color: white;
+    background-color: white;
+    color: black;
+    font-weight: bold;
     min-height: 70vh;
+}
+
+#bodyDiv {
+    width: 100%;
 }
 
 .centralPiece {
@@ -178,18 +185,20 @@ button:hover {
 .dropdown {
     display: inline-block;
     position: relative;
+    font-weight: bold;
 }
 
 .dropbtn {
     font-size: 24px; 
     line-height: 2;
-    color: rgb(232, 230, 227);
+    color: white;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    /* left: -15px; */
+    right: -85px;
+    top: 0;
     z-index: 1;
     background-color: black;
     padding: 10px;
@@ -203,6 +212,67 @@ button:hover {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+#themesDropdown {
+    position: relative;
+}
+
+#mnthDropdown {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    border-radius: 5px;
+    left: -25px;
+    right: -20px;
+    top: 35px;
+    padding: 10px;
+    font-size: 1.2em;
+}
+
+.themeContainer:hover #mnthDropdown {
+    display: block;
+}
+
+#nextMonthThemeContainer, #nextNextMonthThemeContainer {
+    position: relative;
+}
+
+#nextMnthRls, #nxtNxtMnthRls {
+    position: absolute;
+    display: none;
+    z-index: 1;
+    background-color: black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2em;
+    top: 50px;
+    left: -18px;
+}
+
+#nextNextMonthThemeContainer:hover #nxtNxtMnthRls {
+    display: block;
+}
+
+#nextMonthThemeContainer:hover #nextMnthRls {
+    display: block;
+}
+
+.weekContainer {
+    position: relative;
+}
+
+.weekCountdown {
+    display: none;
+    position: absolute;
+    right: -90px;
+    top: -2px;
+    font-size: .8em;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80px;
 }
 
 .flash {
@@ -277,6 +347,12 @@ button:hover {
     border-radius: 10px;
 }
 
+#errorMain {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 #itemTable {
     border: 1px solid white;
     width: 100%;
@@ -324,11 +400,15 @@ button:hover {
 
 .weekItems a {
     text-decoration: none;
-    color: white
+    color: black;
 }
 
 .weekItems p {
     text-align: center;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
 }
 
 .weekItems img {
@@ -414,12 +494,20 @@ button:hover {
     width: 15px;
     height: 15px;
     font-size: .8em;
-    right: -2px;
+    right: -10px;
+    color: #F4C314;
 }
 
 #cartDiv {
     display: flex;
     position: relative;
+    margin-right: 5px;
+}
+
+#cartLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #cartMain {
@@ -525,10 +613,6 @@ button:hover {
     margin-bottom: 15px;
 }
 
-#custInfo hr {
-    /* width: 80vw; */
-}
-
 .editPhotos {
     width: 150px;
 }
@@ -542,10 +626,112 @@ button:hover {
 }
 
 .themes {
-    color: black;
-    margin: 0;
+    /* margin-bottom: 0; */
+    cursor: pointer;
+    color: white;
+
+}
+
+.rlsMsg {
+    margin-top: 0;
+    display: none;
+    font-size: 1.2em;
+}
+
+#collectAddressMain {
+    flex-direction: column;
+    align-items: center;
+}
+
+.collectAddressFields {
+    display: flex;
+}
+
+.collectAddressFields label {
+    font-size: 1.1em;
+}
+
+.collectAddressFields input,select {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+#collectAddressForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#collectAddressForm label {
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 10px;
-    margin-bottom: 10px;
+}
+
+#collectAddressMain button {
+    margin-top: 35px;
+    height: 50px;
+    width: 175px;
+    background-color: #F4C314;
+    color: black;
+    border-radius: 5px;
+    font-size: 1em;
+    border: none;
+    margin-bottom: 30px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+#sidebar {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 2px solid white;
+    /* position: relative; */
+}
+
+#tglArrow {
+    position: absolute;
+    left: 0;
+    height: 40px;
+    width: 20px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    color: white;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+#tglArrow span {
+    position: absolute;
+    top: -1px;
+}
+
+#sidebar #logo {
+    width: 150px;
+}
+
+#headerThemes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 100%;
+}
+
+#outsideLinks {
+    margin-top: 50px;
+}
+
+#outsideLinks h2 {
+    text-align: center;
+    font-size: 1.2em;
 }
 
 @media screen and (max-width: 462px) {

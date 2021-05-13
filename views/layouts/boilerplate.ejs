@@ -19,6 +19,9 @@
 
 <body>
 
+    <%- include('../partials/sidebar'); %>
+
+    <div id="bodyDiv">
     <%- include('../partials/header'); %>
 
     <%- include('../partials/flash'); %>
@@ -26,8 +29,9 @@
     <%- body %>
 
     <%- include('../partials/footer'); %>
-
+    </div>
 </body>
 
 <script type="module" src="/scripts/countdown.js"></script>
+<script src="/scripts/sidebar.js"></script>
 </html>

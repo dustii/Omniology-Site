@@ -13,8 +13,10 @@
                 <label>Remove<input type="checkbox" name="removePhoto" value="<%= item.PhotoThumbnails[index] %>"></label>
             </div>
         <% }); %>
-        <label>Weight<br><input type="text" name="Weight" value="<%= item.Weight %>"></label>
-        <label>Measurements<br><input type="text" name="Measurements" value="<%= item.Measurements %>"></label>
+        <label>Weight (in grams)<br><input type="number" step="any" name="Weight" value="<%= item.Weight %>"></label>
+        <label>Length (in inches)<br><input type="number" step="any" name="Length" value="<%= item.Length %>"></label>
+        <label>Width (in inches)<br><input type="number" step="any" name="Width" value="<%= item.Width %>"></label>
+        <label>Height (in inches)<br><input type="number" step="any" name="Height" value="<%= item.Height %>"></label>
         <label>AdditionalTests<br><input type="text" name="AdditionalTests" value="<%= item.AdditionalTests %>"></label>
         <label>PurchasedFrom<br><input type="text" name="PurchasedFrom" value="<%= item.PurchasedFrom %>"></label>
         <label>PurchasePrice<br><input type="number" name="PurchasePrice" step=".01" value="<%= item.PurchasePrice %>"></label>

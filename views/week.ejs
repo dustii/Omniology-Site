@@ -3,7 +3,12 @@
 <main id="weekMain">
     <% for (let item of items) { %>
         <div class="weekItems">
-            <a href="/item/<%= item._id %>"><img src="<%= item.PhotosSrc[0] %>"></a>
+            <a href="/item/<%= item._id %>">
+                <% if (item.sold) { %>
+                    <span>SOLD</span>
+                <% } %>
+                <img src="<%= item.PhotosSrc[0] %>">
+            </a>
             <a href="/item/<%= item._id %>"><p><%= item.Title %></p></a>
         </div>
     <% } %>

@@ -6,14 +6,20 @@ const itemSchema = new Schema({
     Title: String,
     Description: String,
     PhotoThumbnails: [String],
-    Weight: String,
-    Measurements: String,
+    Weight: Number,
+    Length: Number,
+    Width: Number,
+    Height: Number,
     AdditionalTests: String,
     PurchasedFrom: String,
     PurchasePrice: Number,
     ListPrice: Number,
     SoldPrice: Number,
     ShippingDate: Date,
+    Sold: {
+        type: Boolean,
+        default: false
+    },
     Week: {
         type: Schema.Types.ObjectId,
         ref: 'Week'

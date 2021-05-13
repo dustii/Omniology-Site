@@ -7,12 +7,16 @@ router.get('/', catchAsync(general.renderHome));
 
 router.get('/cart', catchAsync(general.renderCart));
 
+router.get('/collectAddress', general.renderCollectAddress);
+
+router.post('/prepareStripeCheckout', catchAsync(general.prepareStripeCheckout));
+
 router.post('/addToCart', catchAsync(general.addToCart));
 
 router.post('/removeFromCart', general.removeFromCart);
 
 router.get('/checkout', catchAsync(general.renderCheckout));
 
-router.post('/create-checkout-session', catchAsync(general.stripeCheckout));
+router.post('/webhook', catchAsync(general.stripeWebhook));
 
 module.exports = router;

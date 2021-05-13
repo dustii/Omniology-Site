@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate'); %>
+
+<main id="collectAddressMain">
+    <form id="collectAddressForm" method="POST" action="prepareStripeCheckout">
+        <h1>First, let's grab your shipping address.</h1>
+        <div class="collectAddressFields">
+            <label>Full Name<br><input type="text" id="fullName" name="fullName" required><br></label>
+            <label>Address 1<br><input type="text" id="address1" name="address1" required><br></label>
+            <label>Address 2<br><input type="text" id="address2" name="address2"><br></label>
+            </div>
+            <div class="collectAddressFields">
+            <label>City<br><input type="text" id="city" name="city" required><br></label>
+            <label>State or Province<br><input type="text" id="state" name="state" required><br></label>
+            <label>Postal Code<br><input type="text" id="zip" name="zip" required><br></label>
+        </div>
+        <label>Country<br>
+            <select name="country">
+                <option value="US">US</option>
+                <option value="CA">Canada</option>
+            </select>
+        </label>
+
+        <button id="goToCheckout">Proceed to Payment</button>
+    </form>
+    <aside>
+        <p>If you live outside the US or Canada, please click here to send a message to us so we can prepare your order.</p>
+    </aside>
+</main>
