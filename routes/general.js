@@ -15,6 +15,8 @@ router.post('/addToCart', catchAsync(general.addToCart));
 
 router.post('/removeFromCart', general.removeFromCart);
 
+router.post('/toggleSidebar', general.toggleSidebar);
+
 router.get('/checkout', catchAsync(general.renderCheckout));
 
 router.post('/webhook', catchAsync(general.stripeWebhook));

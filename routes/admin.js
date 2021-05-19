@@ -27,11 +27,21 @@ router.get('/upload', isAdmin, admin.renderUpload);
 
 router.post('/upload', isAdmin, upload.array('PhotoThumbnails'), catchAsync(admin.uploadItem));
 
+router.get('/uploadLot', isAdmin, catchAsync(admin.renderUploadLot));
+
+router.post('/uploadLot', isAdmin, catchAsync(admin.uploadLot));
+
+router.get('/lotIndex', isAdmin, catchAsync(admin.renderLotIndex));
+
 router.get('/index', isAdmin, catchAsync(admin.renderIndex));
 
 router.get('/item/edit/:id', isAdmin, catchAsync(admin.renderEdit));
 
 router.post('/item/edit/:id', isAdmin, upload.array('PhotoThumbnails'), catchAsync(admin.editItem));
+
+router.get('/lot/edit/:id', isAdmin, catchAsync(admin.renderLotEdit));
+
+router.post('/lot/edit/:id', isAdmin, catchAsync(admin.editLot));
 
 router.get('/homepage', isAdmin, catchAsync(admin.renderEditHomepage));
 

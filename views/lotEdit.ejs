@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate'); %>
+
+<main>
+    <form id="uploadForm" method="POST" action="/admin/lot/edit/<%= lot._id %>">
+        <h1>Edit Lot</h1>
+
+        <label>Title<br><input type="text" name="title" value="<%= lot.title %>"></label>
+
+        <h2>Remove Items</h2>
+        <div class="lotItems">
+            <% for (let item of lot.items) { %>
+                <div class="lotItem">
+                    <img class="lotItemImg" src="<%= item.PhotosSrc[0] %>">
+                    <span><%= item.Title %></span>
+                    <input type="checkbox" name="lotItems" value="<%= item._id %>">
+                </div>
+            <% } %>
+        </div>
+
+        <h2>Add Items</h2>
+        <div class="lotItems">
+            <% for (let item of items) { %>
+                <div class="lotItem">
+                    <img class="lotItemImg" src="<%= item.PhotosSrc[0] %>">
+                    <span><%= item.Title %></span>
+                    <input type="checkbox" name="items" value="<%= item._id %>">
+                </div>
+            <% } %>
+        </div> 
+
+        <div>
+            <label for="week"><br>Week</label>
+            <select name="week" id="week">
+                <option value="none" <%= lot.week ? "" : "selected" %>>None</option>
+                <option value="1" <%= lot.week && lot.week.number == "1" ? "selected" : "" %>>1</option>
+                <option value="2" <%= lot.week && lot.week.number == "2" ? "selected" : "" %>>2</option>
+                <option value="3" <%= lot.week && lot.week.number == "3" ? "selected" : "" %>>3</option>
+                <option value="4" <%= lot.week && lot.week.number == "4" ? "selected" : "" %>>4</option>
+            </select>
+
+            <label for="month">Month</label>
+            <select name="month" id="month" <%= lot.week ? "" : "disabled" %>>
+                <option value="01" <%= lot.week && lot.week.month == 01 ? "selected" : "" %>>January</option>
+                <option value="02" <%= lot.week && lot.week.month == 02 ? "selected" : "" %>>February</option>
+                <option value="03" <%= lot.week && lot.week.month == 03 ? "selected" : "" %>>March</option>
+                <option value="04" <%= lot.week && lot.week.month == 04 ? "selected" : "" %>>April</option>
+                <option value="05" <%= lot.week && lot.week.month == 05 ? "selected" : "" %>>May</option>
+                <option value="06" <%= lot.week && lot.week.month == 06 ? "selected" : "" %>>June</option>
+                <option value="07" <%= lot.week && lot.week.month == 07 ? "selected" : "" %>>July</option>
+                <option value="08" <%= lot.week && lot.week.month == 08 ? "selected" : "" %>>August</option>
+                <option value="09" <%= lot.week && lot.week.month == 09 ? "selected" : "" %>>September</option>
+                <option value="10" <%= lot.week && lot.week.month == 10 ? "selected" : "" %>>October</option>
+                <option value="11" <%= lot.week && lot.week.month == 11 ? "selected" : "" %>>November</option>
+                <option value="12" <%= lot.week && lot.week.month == 12 ? "selected" : "" %>>December</option>
+            </select>
+            <label>Year<input type="text" name="year" id="year" value="<%= lot.week ? lot.week.year : "" %>" <%= lot.week ? "" : "disabled" %>></label>
+        </div>
+
+        <button>Submit</button>
+    </form>
+</main>

@@ -7,12 +7,15 @@ module.exports.renderRegForm = (req, res) => {
 
 module.exports.register = async(req, res) => {
     try {
-        const { email, username, password } = req.body;
-        const user = new User({ email, username });
+        const { name, email, username, password } = req.body;
+        const user = new User({ email, username, name });
         const regUser = await User.register(user, password);
         req.login(regUser, err => {
             if (err) return next(err);
-            req.flash('success', "Welcome to the Omniology Collection!");
+            if (user.name)
+                req.flash('success', `Welcome to the Omniology Collection, ${user.name}`);
+            else
+                req.flash('success', "Welcome to the Omniology Collection!");
             res.redirect('/');
         });
     } catch (err) {
@@ -34,8 +37,14 @@ module.exports.login = (req, res, next) => {
         }
         req.logIn(user, (err) => {
             if (err) return next(err);
-            req.flash('success', "Welcome back!");
-            return res.redirect('/');
+            if (user.name)
+                req.flash('success', `Welcome back, ${user.name}`);
+            else
+                req.flash('success', "Welcome back!");
+
+            req.session.save(err => {
+                res.redirect('/');
+            })
         });
     }) (req, res, next);
 }
@@ -43,5 +52,7 @@ module.exports.login = (req, res, next) => {
 module.exports.logout = (req, res) => {
     req.logout();
     req.flash('success', "See you later!");
-    res.redirect('/');
+    req.session.save(err => {
+        res.redirect('/');
+    });
 }

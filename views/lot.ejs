@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate'); %>
+
+<main id="weekMain">
+    <h1><%= lot.title %></h1>
+    <div class="weekCollection">
+        <% for (let item of lot.items) { %>
+            <div class="weekItems">
+                <a href="/item/<%= item._id %>">
+                    <img src="<%= item.PhotosSrc[0] %>">
+                </a>
+                <a href="/item/<%= item._id %>"><p><%= item.Title %></p></a>
+            </div>
+        <% } %>
+    </div>
+    <button id="addToCart">Add Lot to Cart</button>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/scripts/item.js"></script>

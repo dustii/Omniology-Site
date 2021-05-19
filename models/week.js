@@ -8,12 +8,14 @@ const weekSchema = new Schema({
     },
     month: Number,
     year: Number,
-    items: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Item'
-        }
-    ]
+    items: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
+    lots: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Lot'
+    }]
 });
 
 module.exports = mongoose.model('Week', weekSchema);

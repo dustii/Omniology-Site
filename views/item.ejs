@@ -17,7 +17,10 @@
         <span>$<%= item.ListPrice %></span>
         <p><%= item.Description %></p>
     </div>
-    <button id="addToCart">Add to Cart</button>
+
+    <% if (!item.inLot) { %>
+        <button id="addToCart">Add to Cart</button>
+    <% } %>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

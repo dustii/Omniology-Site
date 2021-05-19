@@ -1,5 +1,6 @@
 const Homepage = require('../models/homepage');
 const Item = require('../models/item');
+const Lot = require('../models/lot');
 const Order = require('../models/order');
 const images = require('../images');
 const ExpressError = require('../utils/ExpressError');
@@ -17,12 +18,18 @@ module.exports.renderHome = async(req, res) => {
 
 module.exports.renderCart = async(req, res) => {
     let items = [];
-    if (req.session.cart) {
-        for (let id of req.session.cart) {
-            items.push(await Item.findById(id));
+    let lots = [];
+    if (req.session.cart && req.session.cart.items) {
+        for (let itemId of req.session.cart.items) {
+            items.push(await Item.findById(itemId));
         }
     }
-    res.render('cart', { items, title: "Cart" });
+    if (req.session.cart && req.session.cart.lots) {
+        for (let lotId of req.session.cart.lots) {
+            lots.push(await Lot.findById(lotId).populate('items'));
+        }
+    }
+    res.render('cart', { items, lots, title: "Cart" });
 }
 
 module.exports.renderCollectAddress = (req, res) => {
@@ -120,17 +127,42 @@ module.exports.prepareStripeCheckout = async(req, res) => {
 }
 
 module.exports.addToCart = async(req, res) => {
-    if (Array.isArray(req.session.cart)) {
-        if (!req.session.cart.includes(req.body.id)) {
-            req.session.cart.push(req.body.id);
+    if (req.body.itemId) {
+        if (req.session.cart && Array.isArray(req.session.cart.items)) {
+            if (!req.session.cart.items.includes(req.body.itemId)) {
+                req.session.cart.items.push(req.body.id);
+                req.flash('success', "Item Added to Cart");
+            }
+            else
+                req.flash('success', "Item Already in Cart");
+        }
+        else if (!req.session.cart) {
+            req.session.cart = {
+                items: [req.body.itemId]
+            }
             req.flash('success', "Item Added to Cart");
         }
-        else
-            req.flash('success', "Item Already in Cart");
     }
     else {
-        req.session.cart = [req.body.id];
-        req.flash('success', "Item Added to Cart");
+        if (!req.session.cart) {
+            req.session.cart = {
+                lots: [req.body.lotId]
+            }
+        }
+        else {
+            if (req.session.cart && Array.isArray(req.session.cart.lots)) {
+                if (!req.session.cart.lots.includes(req.body.lotId)) {
+                    req.session.cart.lots.push(req.body.lotId);
+                    req.flash('success', "Lot Added to Cart");
+                }
+                else
+                    req.flash('success', "Lot Already in Cart");
+            }
+            else {
+                req.session.cart.lots = [req.body.lotId];
+                req.flash('success', "Lot Added to Cart");
+            }
+        }
     }
 
     res.send('success');
@@ -138,31 +170,58 @@ module.exports.addToCart = async(req, res) => {
 
 
 module.exports.removeFromCart = (req, res) => {
-    const index = req.session.cart.indexOf(req.body.id);
-    req.session.cart.splice(index, 1);
+    if (req.body.itemId) {
+        const index = req.session.cart.items.indexOf(req.body.itemId);
+        req.session.cart.items.splice(index, 1);
+    }
+    else {
+        const index = req.session.cart.lots.indexOf(req.body.lotId);
+        req.session.cart.lots.splice(index, 1);
+    }
 
     req.flash('success', "Item Removed");
     res.send('success');
 }
 
 
+module.exports.toggleSidebar = (req, res) => {
+    req.session.sidebarState = req.body.toggle;
+    res.send('success');
+}
+
+
 module.exports.renderCheckout = async(req, res) => {
     let items = [];
-    for (let itemId of req.session.cart) {
+    let lots = [];
+    for (let itemId of req.session.cart.items) {
         let item = await Item.findById(itemId);
 
         if (item.sold) {
-            let index = req.session.cart.indexOf(itemId);
-            req.session.cart.splice(index, 1);
+            let index = req.session.cart.items.indexOf(itemId);
+            req.session.cart.items.splice(index, 1);
         }
         else
             items.push(await Item.findById(itemId));
     }
+    for (let lotId of req.session.cart.lots) {
+        let lot = await Lot.findById(lotId);
+
+        if (lot.sold) {
+            let index = req.session.cart.lots.indexOf(lotId);
+            req.session.cart.lots.splice(index, 1);
+        }
+        else
+            lots.push(await Lot.findById(lotId));
+    }
+
     let total = 0;
     for (let item of items) {
         total += item.ListPrice;
     }
-    res.render('checkout', { items, total, title: "Checkout" });
+    for (let lot of lots) {
+        total += lot.ListPrice;
+    }
+    res.render('checkout', { items, lots, total, title: "Checkout" });
 }
 
 

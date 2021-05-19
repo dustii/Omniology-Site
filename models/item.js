@@ -23,6 +23,10 @@ const itemSchema = new Schema({
     Week: {
         type: Schema.Types.ObjectId,
         ref: 'Week'
+    },
+    Lot: {
+        type: Schema.Types.ObjectId,
+        ref: 'Lot'
     }
 });
 

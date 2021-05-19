@@ -86,8 +86,8 @@ menu a {
 main {
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     font-weight: bold;
     min-height: 70vh;
 }
@@ -99,10 +99,9 @@ main {
 .centralPiece {
     flex: 3;
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    background-color: #fff;
+    justify-content: space-evenly;
     padding-bottom: 20px;
     min-width: 300px;
     text-align: center;
@@ -110,11 +109,18 @@ main {
 
 .featuredSection {
     font-size: 1.5em;
-    flex-grow: 2;
+    width: 100%;
+    /* flex-grow: 2; */
     /* flex-shrink: 2; */
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-evenly;
+}
+
+#featVideo {
+    width: 600px;
+    max-width: 90vw;
 }
 
 .centralPiece img {
@@ -126,8 +132,9 @@ main {
 }
 
 #featImg {
-    width: 100%;
-    max-width: 750px;
+    width: 300px;
+    max-width: 90vw;
+    padding: 10px;
     transition: opacity 1s;
 }
 
@@ -167,6 +174,10 @@ main {
     justify-content: space-around;
     text-align: center;
     flex-wrap: wrap;
+}
+
+footer * {
+    padding: 5px;
 }
 
 footer a {
@@ -378,6 +389,10 @@ button:hover {
     display: none;
 }
 
+.lotPhoto {
+    width: 200px;
+}
+
 .next,.prev {
    cursor: pointer; 
 }
@@ -400,7 +415,7 @@ button:hover {
 
 .weekItems a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .weekItems p {
@@ -418,7 +433,18 @@ button:hover {
 
 #weekMain {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#weekMain hr {
+    width: 100%;
+}
+
+.weekCollection {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -695,22 +721,23 @@ button:hover {
 #tglArrow {
     position: absolute;
     left: 0;
-    height: 40px;
-    width: 20px;
+    height: 50px;
+    width: 30px;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
-    color: white;
-    background: black;
+    color: black;
+    background: white;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2em;
     cursor: pointer;
+    z-index: 1;
 }
 
 #tglArrow span {
     position: absolute;
-    top: -1px;
+    top: 3px;
 }
 
 #sidebar #logo {
@@ -732,6 +759,45 @@ button:hover {
 #outsideLinks h2 {
     text-align: center;
     font-size: 1.2em;
+}
+
+#uploadLotForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#uploadLotForm button {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.lotItems {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.lotItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+
+.lotItem span {
+    text-align: center;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lotItemImg {
+    height: 200px;
 }
 
 @media screen and (max-width: 462px) {

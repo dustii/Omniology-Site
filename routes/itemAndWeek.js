@@ -7,4 +7,6 @@ router.get('/week/:num', catchAsync(itemAndWeek.renderWeek));
 
 router.get('/item/:id', catchAsync(itemAndWeek.renderItem));
 
+router.get('/lot/:id', catchAsync(itemAndWeek.renderLot));
+
 module.exports = router;

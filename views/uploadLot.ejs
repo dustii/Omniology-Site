@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate'); %>
+
+<main>
+    <form method="POST" action="uploadLot" id="uploadLotForm">
+        <h1>Upload a Lot</h1>
+
+        <label>Title<br><input type="text" name="title"></label>
+
+        <h2>Select Items</h2>
+        <div class="lotItems">
+            <% items.forEach((item, index) => { %>
+                <div class="lotItem">
+                    <img class="lotItemImg" src="<%= item.PhotosSrc[0] %>">
+                    <span><%= item.Title %></span>
+                    <input type="checkbox" name="lotItems" value="<%= item._id %>">
+                </div>
+            <% }); %>
+        </div>
+
+        <div>
+            <label for="week"><br>Week</label>
+            <select name="week" id="week">
+                <option value="none">None</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+
+            <label for="month">Month</label>
+            <select name="month" id="month" disabled>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <label>Year<input type="text" name="year" id="year" size="4" disabled></label>
+        </div>
+
+        <button>Submit</button>
+    </form>
+</main>
+
+<script src="/scripts/uploadItem.js"></script>

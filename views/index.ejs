@@ -1,25 +1,20 @@
 <% layout('layouts/boilerplate'); %>
 
-<!-- <video> -->
-<!-- <source src="themeVideo.mv4"> -->
-<!-- </video> -->
 <main>
     <section class="centralPiece">
 
         <section class="featuredSection">
             <img id="featImg" src="images/<%= img %>" alt="Featured Image">
+            <div>
+                <h2>Checkout Out Our Latest Video</h2>
+                <video id="featVideo" controls>
+                    <source src="videos/Practice Poop.mp4"
+                    type="video/webm">
+                </video>
+            </div>
         </section>
 
-        <h2>Also find us on Amazon and Etsy!</h2>
 
-        <aside>
-            <a href="onlineStores.com">
-                <img src="images/amazon_logo.png" alt="Amazon logo">
-            </a>
-            <a href="onlineStores.com">
-                <img src="images/etsy_logo.png" alt="Etsy logo">
-            </a>
-        </aside>
 
     </section>
 </main>

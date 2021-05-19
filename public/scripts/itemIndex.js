@@ -23,13 +23,13 @@ for (let i = 0; i < photoIndicesLength; i++) {
 }
 
 function plusPhotos(el, n) {
-    const carouselNum = el.id[el.id.length - 1];
+    const carouselNum = el.id.substring(4);
     showPhotos(el, photoIndices[carouselNum] += n);
 }
 
 function showPhotos(el, n) {
     let i;
-    const carouselNum = el.id[el.id.length - 1];
+    const carouselNum = el.id.substring(4);
     let photos = document.getElementsByClassName("photoThumbnail" + carouselNum);
 
     if (photos.length > 0) {

@@ -1,6 +1,8 @@
 <% layout('layouts/boilerplate'); %>
 
 <main id="weekMain">
+    <h1>Items</h1>
+    <div class="weekCollection">
     <% for (let item of items) { %>
         <div class="weekItems">
             <a href="/item/<%= item._id %>">
@@ -10,6 +12,27 @@
                 <img src="<%= item.PhotosSrc[0] %>">
             </a>
             <a href="/item/<%= item._id %>"><p><%= item.Title %></p></a>
+        </div>
+    <% } %>
+    </div>
+
+    <% if (lots && lots.length > 0) { %>
+        <hr>
+        <h1>Lots</h1>
+        <div class="weekCollection">
+        <% for (let lot of lots) { %>
+            <% if (lot.items && lot.items.length > 0) { %>
+            <div class="weekItems">
+                <a href="/lot/<%= lot._id %>">
+                    <% if (lot.sold) { %>
+                        <span>SOLD</span>
+                    <% } %>
+                    <img src="<%= lot.items[0].PhotosSrc[0] %>">
+                </a>
+                <a href="/lot/<%= lot._id %>"><p><%= lot.title %></p></a>
+            </div>
+            <% } %>
+        <% } %>
         </div>
     <% } %>
 </main>

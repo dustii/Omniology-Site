@@ -4,7 +4,7 @@
             <div class="dropdown">
                 <span class="dropbtn">Account</span>
                 <div class="dropdown-content">
-                    <% if (!currentUser) { %>
+                    <% if (typeof currentUser === 'undefined' || !currentUser) { %>
                     <a href="/register">Register</a>
                     <a href="/login">Login</a>
                     <% } else { %>
@@ -15,8 +15,8 @@
         <div id="cartLink">
             <div id="cartDiv">
                 <a id="cartIcon" href="/cart"><img src="/images/shopping-cart-24.png"></a>
-                <% if (typeof cart !== 'undefined' && cart.length > 0) { %>
-                    <span id="cartNum"><%= cart.length %></span>
+                <% if (typeof cart !== 'undefined' && cartTotLength > 0) { %> 
+                    <span id="cartNum"><%= cartTotLength %></span>
                 <% } %>
             </div>
             <a href="/cart">Cart</a>
@@ -37,3 +37,7 @@
 <div id="tglArrow">
     <span>&rtrif;</span>
 </div>
+
+<div id="sidebarState" data-sidebarstate="<%= sidebarState %>"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

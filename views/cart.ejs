@@ -10,15 +10,28 @@
                     <div class="cartText">
                         <h2><%= item.Title %></h2>
                         <span>$<%= item.ListPrice %></span><br>
-                        <button id="removeButton<%= index %>">Remove</button>
+                        <button class="itmRmvBtn" id="itmRmvBtn<%= index %>">Remove</button>
                     </div>
                 </div>
             </div>
         <% }); %>
+        <% lots.forEach((lot, index) => { %>
+            <div class="cartItem">
+                <div class="itemRow">
+                    <span class="itemId" id="lotId<%= index %>"><%= lot._id %></span>
+                    <img class="cartPhoto" src="<%= lot.items[0].PhotosSrc[0] %>">
+                    <div class="cartText">
+                        <h2><%= lot.title %></h2>
+                        <span>$<%= lot.listPrice %></span><br>
+                        <button class="lotRmvBtn" id="lotRmvBtn<%= index %>">Remove</button>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
         <br><br><br>
     </div>
 
-    <% if (items.length > 0) { %>
+    <% if (items.length > 0 || lots.length > 0) { %>
         <a href="collectAddress"><button id="goToCheckout">Begin Checkout</button></a>
     <% } else { %>
         <h1>There's nothing here!</h1>

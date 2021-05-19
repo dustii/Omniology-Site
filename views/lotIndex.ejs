@@ -1,0 +1,30 @@
+<% layout('layouts/boilerplate'); %>
+
+<main>
+    <table>
+        <tr>
+            <th>Edit</th>
+            <th>Title</th>
+            <th>Items</th>
+        </tr>
+        <% lots.forEach((lot, index) => { %>
+            <tr>
+                <td>
+                    <a href="/admin/lot/edit/<%= lot._id %>"><button>Edit</button></a>
+                </td>
+                <td>
+                    <p><%= lot.title %></p>
+                </td>
+                <td>
+                    <% lot.items.forEach((item) => { %>
+                        <img class="lotPhoto photoThumbnail photoThumbnail<%= index %>" src="<%= item.PhotosSrc[0] %>">
+                    <% }); %>
+                    <a class="prev" id="prev<%= index %>">&#10094</a>
+                    <a class="next" id="next<%= index %>">&#10095</a>
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+</main>
+
+<script src="/scripts/itemIndex.js"></script>

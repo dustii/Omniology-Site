@@ -35,17 +35,39 @@ const sidebar = document.querySelector("#sidebar");
 const tglArrow = document.querySelector("#tglArrow");
 
 tglArrow.style.top = (sidebar.scrollHeight / 2) - (tglArrow.scrollHeight / 2) + 'px';
-tglArrow.style.left = '0';
 
-sidebar.style.display = "none";
+const sidebarState = document.querySelector("#sidebarState");
+
+if (sidebarState.dataset.sidebarstate == "collapse") {
+    sidebar.style.display = "none";
+    tglArrow.style.left = '0';
+}
+else {
+    sidebar.style.display = "flex";
+    tglArrow.style.left = sidebar.scrollWidth + 'px';
+}
 
 tglArrow.onclick = () => {
     if (sidebar.style.display == "flex" || sidebar.style.display == "") {
         sidebar.style.display = "none";
         tglArrow.style.left = '0';
+        axios({
+            method: 'post',
+            url: '/toggleSidebar',
+            withCredentials: true,
+            data: { toggle: "collapse" }
+        })
+        .catch(err => console.log(err));
     }
     else {
         sidebar.style.display = "flex";
         tglArrow.style.left = sidebar.scrollWidth + 'px';
+        axios({
+            method: 'post',
+            url: '/toggleSidebar',
+            withCredentials: true,
+            data: { toggle: "expand" }
+        })
+        .catch(err => console.log(err));
     }
 }
