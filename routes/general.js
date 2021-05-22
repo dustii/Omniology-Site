@@ -19,6 +19,8 @@ router.post('/toggleSidebar', general.toggleSidebar);
 
 router.get('/checkout', catchAsync(general.renderCheckout));
 
+router.get('/checkoutSuccess', general.checkoutSuccess);
+
 router.post('/webhook', catchAsync(general.stripeWebhook));
 
 module.exports = router;
