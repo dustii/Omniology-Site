@@ -34,7 +34,7 @@ itemSchema.virtual('PhotosSrc').get(function() {
     return this.PhotoThumbnails.map((photo) => { return `/images/items/${photo}`.split(" ").join("%20"); });
 });
 itemSchema.virtual('StripePhotos').get(function() {
-    return this.PhotoThumbnails.map((photo) => { return `http://omniology/herokuapp.com/images/items/${photo}`.split(" ").join("%20"); });
+    return this.PhotoThumbnails.map((photo) => { return `http://omniology.herokuapp.com/images/items/${photo}`.split(" ").join("%20"); });
 });
 itemSchema.virtual('YMDdate').get(function() {
     if (this.ShippingDate) {

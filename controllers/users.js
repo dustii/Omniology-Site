@@ -16,11 +16,18 @@ module.exports.register = async(req, res) => {
                 req.flash('success', `Welcome to the Omniology Collection, ${user.name}`);
             else
                 req.flash('success', "Welcome to the Omniology Collection!");
-            res.redirect('/');
+            
+            req.session.save(err => {
+                console.log(err);
+                res.redirect('/');
+            });
         });
     } catch (err) {
         req.flash('error', err.message);
-        res.redirect('register');
+        req.session.save(err => {
+            console.log(err);
+            res.redirect('register');
+        });
     }
 }
 
@@ -43,6 +50,7 @@ module.exports.login = (req, res, next) => {
                 req.flash('success', "Welcome back!");
 
             req.session.save(err => {
+                console.log(err);
                 res.redirect('/');
             })
         });
@@ -53,6 +61,7 @@ module.exports.logout = (req, res) => {
     req.logout();
     req.flash('success', "See you later!");
     req.session.save(err => {
+        console.log(err);
         res.redirect('/');
     });
 }

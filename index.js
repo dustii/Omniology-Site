@@ -18,6 +18,8 @@ const { getMonths } = require('./utils/getMonths');
 const db = require('./mongoose/mongoosedb');
 const User = require('./models/user');
 const Homepage = require('./models/homepage');
+const Item = require('./models/item');
+const Lot = require('./models/lot');
 const adminRoutes = require('./routes/admin');
 const userRoutes = require('./routes/users');
 const generalRoutes = require('./routes/general');
@@ -73,6 +75,29 @@ app.use(express.json());
 
 app.engine('ejs', ejsMate);
 
+app.use(async(req, res, next) => {
+    if (req.session.cart) {
+        if (req.session.cart.items) {
+            for (let itemId of req.session.cart.items) {
+                const item = await Item.findById(itemId);
+                if (item.Sold) {
+                    const index = req.session.cart.items.indexOf(itemId);
+                    req.session.cart.items.splice(index, 1);
+                }
+            }
+        }
+        if (req.session.cart.lots) {
+            for (let lotId of req.session.cart.lots) {
+                const lot = await Lot.findById(lotId);
+                if (lot.sold) {
+                    const index = req.session.cart.lots.indexOf(lotId);
+                    req.session.cart.lots.splice(index, 1);
+                }
+            }
+        }
+    }
+    next();
+});
 
 app.use(async(req, res, next) => {
     res.locals.currentUser = req.user;

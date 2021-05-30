@@ -16,7 +16,10 @@ const upload = multer({ storage });
 const isAdmin = (req, res, next) => {
     if (!req.user || req.user.admin !== true) {
         req.flash('error', "Not Authorized");
-        res.redirect('/');
+        req.session.save(err => {
+            console.log(err);
+            res.redirect('/');
+        });
     }
     next();
 }
@@ -29,7 +32,7 @@ router.post('/upload', isAdmin, upload.array('PhotoThumbnails'), catchAsync(admi
 
 router.get('/uploadLot', isAdmin, catchAsync(admin.renderUploadLot));
 
-router.post('/uploadLot', isAdmin, catchAsync(admin.uploadLot));
+router.post('/uploadLot', isAdmin, upload.single('lotPhoto'), catchAsync(admin.uploadLot));
 
 router.get('/lotIndex', isAdmin, catchAsync(admin.renderLotIndex));
 
@@ -41,7 +44,7 @@ router.post('/item/edit/:id', isAdmin, upload.array('PhotoThumbnails'), catchAsy
 
 router.get('/lot/edit/:id', isAdmin, catchAsync(admin.renderLotEdit));
 
-router.post('/lot/edit/:id', isAdmin, catchAsync(admin.editLot));
+router.post('/lot/edit/:id', isAdmin, upload.single('lotPhoto'), catchAsync(admin.editLot));
 
 router.get('/homepage', isAdmin, catchAsync(admin.renderEditHomepage));
 

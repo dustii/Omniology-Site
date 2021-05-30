@@ -9,12 +9,15 @@
         <th id="itemDescription">Description</th>
         <th>PhotoThumbnails</th>
         <th>Weight</th>
-        <th>Measurements</th>
+        <th>Width</th>
+        <th>Length</th>
+        <th>Height</th>
         <th>AdditionalTests</th>
         <th>PurchasedFrom</th>
         <th>PurchasePrice</th>
         <th>ListPrice</th>
         <th>SoldPrice</th>
+        <th>Sold</th>
         <th>ShippingDate</th>
     </tr>
     <% items.forEach((item, index) => { %>
@@ -26,19 +29,22 @@
             <td>
             <div>
             <% for(let photo of item.PhotosSrc) { %>
-                <img class="photoThumbnail<%= index %> photoThumbnail" src=<%= photo %>>
+                <img class="photoThumbnail<%= index %> photoThumbnail" src=<%= photo %> alt="itemPhoto">
             <% } %>
             <a class="prev" id="prev<%= index %>">&#10094</a>
             <a class="next" id="next<%= index %>">&#10095</a>
             </div>
             </td>
             <td><%= item.Weight %></td>
-            <td><%= item.Measurements %></td>
+            <td><%= item.Width %></td>
+            <td><%= item.Length %></td>
+            <td><%= item.Height %></td>
             <td><%= item.AdditionalTests %></td>
             <td><%= item.PurchasedFrom %></td>
             <td>$<%= item.PurchasePrice %></td>
             <td>$<%= item.ListPrice %></td>
             <td>$<%= item.SoldPrice %></td>
+            <td><%= item.Sold ? "True" : "False" %></td>
             <td><%= item.YMDdate %></td>
         </tr>
     <% }); %>

@@ -29,7 +29,8 @@ module.exports.uploadItem = async(req, res) => {
         PurchasePrice: req.body.PurchasePrice,
         ListPrice: req.body.ListPrice,
         SoldPrice: req.body.SoldPrice,
-        ShippingDate: req.body.ShippingDate
+        ShippingDate: req.body.ShippingDate,
+        Sold: req.body.Sold
     }
     const item = new Item(itemBody);
     
@@ -70,6 +71,8 @@ module.exports.uploadLot = async(req, res) => {
     const lot = new Lot({ title: req.body.title });
     lot.listPrice = 0;
 
+    lot.sold = req.body.sold;
+
     if (!Array.isArray(req.body.lotItems))
         req.body.lotItems = [req.body.lotItems];
     for (let itemId of req.body.lotItems) {
@@ -83,6 +86,8 @@ module.exports.uploadLot = async(req, res) => {
     }
 
     lot.listPrice = lot.listPrice + (lot.listPrice * .1);
+
+    lot.lotPhoto = req.file?.filename;
 
     if (req.body.week !== "none") {
         let week = await Week.findOne({ number: req.body.week, month: req.body.month, year: req.body.year });
@@ -150,6 +155,7 @@ module.exports.editItem = async(req, res) => {
     item.ListPrice = req.body.ListPrice;
     item.SoldPrice = req.body.SoldPrice;
     item.ShippingDate = req.body.ShippingDate;
+    item.Sold = req.body.Sold;
 
     if (!Array.isArray(req.body.removePhoto))
         req.body.removePhoto = [req.body.removePhoto];
@@ -201,6 +207,7 @@ module.exports.editLot = async(req, res) => {
     const lot = await Lot.findById(req.params.id);
 
     lot.title = req.body.title;
+    lot.sold = req.body.sold;
 
     if (req.body.lotItems && !Array.isArray(req.body.lotItems)) {
         req.body.lotItems = [req.body.lotItems];
@@ -234,6 +241,14 @@ module.exports.editLot = async(req, res) => {
         lot.listPrice += item.ListPrice;
     }
     lot.listPrice += lot.listPrice * .1;
+
+    if (req.body.removePhoto) {
+        lot.lotPhoto = null;
+    }
+
+    if (req.file) {
+        lot.lotPhoto = req.file.filename;
+    }
 
     if (lot.week !== undefined) {
         const oldWeek = await Week.findById(lot.week);

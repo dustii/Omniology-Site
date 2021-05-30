@@ -44,7 +44,7 @@ if (sidebarState.dataset.sidebarstate == "collapse") {
 }
 else {
     sidebar.style.display = "flex";
-    tglArrow.style.left = sidebar.scrollWidth + 'px';
+    tglArrow.style.left = sidebar.scrollWidth + 1 + 'px';
 }
 
 tglArrow.onclick = () => {
@@ -61,7 +61,7 @@ tglArrow.onclick = () => {
     }
     else {
         sidebar.style.display = "flex";
-        tglArrow.style.left = sidebar.scrollWidth + 'px';
+        tglArrow.style.left = sidebar.scrollWidth + 1 + 'px';
         axios({
             method: 'post',
             url: '/toggleSidebar',

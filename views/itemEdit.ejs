@@ -9,7 +9,7 @@
         <label>Add or Remove Photos<br><input type="file" name="PhotoThumbnails" multiple></label>
         <% item.PhotosSrc.forEach((photo, index) => { %>
             <div>
-                <img class="editPhotos" src="<%= photo %>">
+                <img class="editPhotos" src="<%= photo %>" alt="itemPhoto">
                 <label>Remove<input type="checkbox" name="removePhoto" value="<%= item.PhotoThumbnails[index] %>"></label>
             </div>
         <% }); %>
@@ -50,6 +50,11 @@
             </select>
             <label>Year<input type="text" name="year" id="year" value="<%= item.Week ? item.Week.year : "" %>" <%= item.Week ? "" : "disabled" %>></label>
         </div>
+        <label for="sold">Sold</label>
+        <select name="Sold" id="sold">
+            <option value="true" <%= item.Sold ? "selected" : "" %>>True</option>
+            <option value="false" <%= item.Sold ? "" : "selected" %>>False</option>
+        </select>
         <button>Submit</button>
     </form>
 </main>

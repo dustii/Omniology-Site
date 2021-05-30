@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate'); %>
+
+<main id="altCheckoutMain">
+    <h1>Message Order</h1>
+    <div class="collectAddressFields">
+        <label>Full Name<br><input type="text" id="fullName" name="fullName" required><br></label>
+        <label>Address 1<br><input type="text" id="address1" name="address1" required><br></label>
+        <label>Address 2<br><input type="text" id="address2" name="address2"><br></label>
+        </div>
+    <div class="collectAddressFields">
+        <label>City<br><input type="text" id="city" name="city" required><br></label>
+        <label>State or Province<br><input type="text" id="state" name="state" required><br></label>
+        <label>Postal Code<br><input type="text" id="zip" name="zip" required><br></label>
+    </div>
+    <label>Country<br><input type="text" id="country" name="country"></label>
+    <label>Email<br><input type="email" name="email" id="email"></label>
+    <label>Additional Information<br></label><textarea name="message" id="message" rows="5" cols="33"></textarea>
+    <button>Submit</button>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/scripts/altCheckout.js"></script>

@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate'); %>
 
 <main>
-    <form method="POST" action="uploadLot" id="uploadLotForm">
+    <form method="POST" action="uploadLot" id="uploadLotForm" enctype="multipart/form-data">
         <h1>Upload a Lot</h1>
 
         <label>Title<br><input type="text" name="title"></label>
@@ -16,6 +16,8 @@
                 </div>
             <% }); %>
         </div>
+
+        <label>Choose Lot Photo<br><input type="file" id="lotPhoto" name="lotPhoto"></label>
 
         <div>
             <label for="week"><br>Week</label>
@@ -44,6 +46,14 @@
             </select>
             <label>Year<input type="text" name="year" id="year" size="4" disabled></label>
         </div>
+        
+        <br><br>
+
+        <label for="sold">Sold</label>
+        <select id="sold" name="sold">
+            <option value="true">True</option>
+            <option value="false" selected>False</option>
+        </select>
 
         <button>Submit</button>
     </form>

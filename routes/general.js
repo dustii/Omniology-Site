@@ -21,6 +21,10 @@ router.get('/checkout', catchAsync(general.renderCheckout));
 
 router.get('/checkoutSuccess', general.checkoutSuccess);
 
+router.get('/altCheckout', general.renderAltCheckout);
+
+router.post('/altCheckout', catchAsync(general.altCheckout));
+
 router.post('/webhook', catchAsync(general.stripeWebhook));
 
 module.exports = router;

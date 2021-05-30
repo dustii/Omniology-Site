@@ -1,13 +1,15 @@
 const stripe = Stripe("pk_test_51IS46OLUXB5NUgfg3xjTpaTSAbue4ifhgFRpYIEVB2BAywZqiIeC54bfObEuKcMySxSvU0PcjovZWnQDRX6gs4yC006qGrDelF");
 const checkoutButton = document.querySelector("#goToCheckout");
-
+const sendMsgButton = document.querySelector("#sendMessage");
 
 checkoutButton.onclick = function() {
     const fullName = document.querySelector("#fullName").value
     const address1 = document.querySelector("#address1").value;
+    const address2 = document.querySelector("#address2").value;
     const city = document.querySelector("#city").value;
     const state = document.querySelector("#state").value;
     const zip = document.querySelector("#zip").value;
+    const country = document.querySelector("#country").value;
 
     if (fullName && address1 && city && state && zip) {
         axios({
@@ -17,9 +19,11 @@ checkoutButton.onclick = function() {
             data: {
                 fullName,
                 address1,
+                address2,
                 city,
                 state,
-                zip
+                zip,
+                country
             }
         })
         .then(res => res.data)
@@ -32,4 +36,8 @@ checkoutButton.onclick = function() {
     else {
         alert("Please fill in required information.");
     }
+}
+
+sendMsgButton.onclick = () => {
+    window.location.replace('/altCheckout');
 }

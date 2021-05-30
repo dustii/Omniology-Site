@@ -1,5 +1,5 @@
 <aside id="sidebar">
-    <img id="logo" src="/images/Omniology Logo - No text.jpg">
+    <a href="/"><img id="logo" src="/images/Omniology Logo - No text.jpg" alt="siteLogo"></a>
         <menu>
             <div class="dropdown">
                 <span class="dropbtn">Account</span>
@@ -14,7 +14,7 @@
             </div>
         <div id="cartLink">
             <div id="cartDiv">
-                <a id="cartIcon" href="/cart"><img src="/images/shopping-cart-24.png"></a>
+                <a id="cartIcon" href="/cart"><img src="/images/shopping-cart-24.png" alt="cartIcon"></a>
                 <% if (typeof cart !== 'undefined' && cartTotLength > 0) { %> 
                     <span id="cartNum"><%= cartTotLength %></span>
                 <% } %>

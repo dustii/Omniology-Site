@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate'); %>
 
 <main>
-    <form id="uploadForm" method="POST" action="/admin/lot/edit/<%= lot._id %>">
+    <form id="uploadForm" method="POST" action="/admin/lot/edit/<%= lot._id %>" enctype="multipart/form-data">
         <h1>Edit Lot</h1>
 
         <label>Title<br><input type="text" name="title" value="<%= lot.title %>"></label>
@@ -10,7 +10,7 @@
         <div class="lotItems">
             <% for (let item of lot.items) { %>
                 <div class="lotItem">
-                    <img class="lotItemImg" src="<%= item.PhotosSrc[0] %>">
+                    <img class="lotItemImg" src="<%= item.PhotosSrc[0] %>" alt="lotPhoto">
                     <span><%= item.Title %></span>
                     <input type="checkbox" name="lotItems" value="<%= item._id %>">
                 </div>
@@ -21,12 +21,22 @@
         <div class="lotItems">
             <% for (let item of items) { %>
                 <div class="lotItem">
-                    <img class="lotItemImg" src="<%= item.PhotosSrc[0] %>">
+                    <img class="lotItemImg" src="<%= item.PhotosSrc[0] %>" alt="itemPhoto">
                     <span><%= item.Title %></span>
                     <input type="checkbox" name="items" value="<%= item._id %>">
                 </div>
             <% } %>
         </div> 
+
+        <h2>Remove/Add Lot Photo</h2>
+        <% if (lot.lotPhoto) { %>
+            <div class="editPhotos">
+                <img class="lotItemImg" src="<%= lot.PhotoSrc %>" lot="itemPhoto">
+                <label>Remove<input type="checkbox" name="removePhoto" value="true"></label>
+            </div> 
+        <% } %>
+        
+        <label>Add Lot Photo<br><input type="file" name="lotPhoto"></label>
 
         <div>
             <label for="week"><br>Week</label>
@@ -55,6 +65,12 @@
             </select>
             <label>Year<input type="text" name="year" id="year" value="<%= lot.week ? lot.week.year : "" %>" <%= lot.week ? "" : "disabled" %>></label>
         </div>
+
+        <label for="sold">Sold</label>
+        <select name="sold" id="sold">
+            <option value="true" <%= lot.sold ? "selected" : "" %>>True</option>
+            <option value="false" <%= lot.sold ? "" : "selected" %>>False</option>
+        </select>
 
         <button>Submit</button>
     </form>

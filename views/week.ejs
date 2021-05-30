@@ -6,12 +6,14 @@
     <% for (let item of items) { %>
         <div class="weekItems">
             <a href="/item/<%= item._id %>">
-                <% if (item.sold) { %>
-                    <span>SOLD</span>
-                <% } %>
-                <img src="<%= item.PhotosSrc[0] %>">
+                <img src="<%= item.PhotosSrc[0] %>" alt="itemPhoto">
             </a>
-            <a href="/item/<%= item._id %>"><p><%= item.Title %></p></a>
+            <a class="thingText" href="/item/<%= item._id %>">
+                <p style="<%= item.Sold ? 'text-decoration: line-through;' : '' %>"><%= item.Title %></p>
+                <% if (item.Sold) { %>
+                    <span>Sold</span>
+                <% } %>
+            </a>
         </div>
     <% } %>
     </div>
@@ -24,12 +26,14 @@
             <% if (lot.items && lot.items.length > 0) { %>
             <div class="weekItems">
                 <a href="/lot/<%= lot._id %>">
-                    <% if (lot.sold) { %>
-                        <span>SOLD</span>
-                    <% } %>
-                    <img src="<%= lot.items[0].PhotosSrc[0] %>">
+                    <img src="<%= lot.PhotoSrc %>" alt="lotPhoto">
                 </a>
-                <a href="/lot/<%= lot._id %>"><p><%= lot.title %></p></a>
+                <a class="thingText" href="/lot/<%= lot._id %>">
+                    <p style="<%= lot.sold ? 'text-decoration: line-through' : '' %>"><%= lot.title %></p>
+                    <% if (lot.sold) { %>
+                        <span>Sold</span>
+                    <% } %>
+                </a>
             </div>
             <% } %>
         <% } %>

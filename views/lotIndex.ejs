@@ -16,11 +16,9 @@
                     <p><%= lot.title %></p>
                 </td>
                 <td>
-                    <% lot.items.forEach((item) => { %>
-                        <img class="lotPhoto photoThumbnail photoThumbnail<%= index %>" src="<%= item.PhotosSrc[0] %>">
-                    <% }); %>
-                    <a class="prev" id="prev<%= index %>">&#10094</a>
-                    <a class="next" id="next<%= index %>">&#10095</a>
+                    <% if (lot.lotPhoto) { %>
+                        <img class="lotPhoto" src="<%= lot.PhotoSrc %>" alt="lotPhoto">
+                    <% } %>
                 </td>
             </tr>
         <% }); %>

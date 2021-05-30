@@ -14,7 +14,7 @@
             <label>Postal Code<br><input type="text" id="zip" name="zip" required><br></label>
         </div>
         <label>Country<br>
-            <select name="country">
+            <select name="country" id="country">
                 <option value="US">US</option>
                 <option value="CA">Canada</option>
             </select>
@@ -22,8 +22,9 @@
 
         <button type="button" id="goToCheckout">Proceed to Payment</button>
     </form>
-    <aside>
+    <aside id="outUSCanAside">
         <p>If you live outside the US or Canada, please click here to send a message to us so we can prepare your order.</p>
+        <button id="sendMessage">Send Message</button>
     </aside>
 </main>
 
